@@ -1,5 +1,265 @@
-   <!DOCTYPE html>
-   <html>
-     <head><title>My Site</title></head>
-     <body><h1>Hello, world!</h1></body>
-   </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samuel Whitebook</title>
+  <meta name="description" content="Samuel Whitebook, 3rd year PhD student in Physics at the California Institute of Technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F5F7F8;
+      --ink: #1A2233;
+      --muted: #5B6577;
+      --link: #2340C8;
+      --line: #D5DBE2;
+      --serif: "Besley", Georgia, serif;
+      --sans: "Public Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 1.0625rem/1.6 var(--sans);
+    }
+    a { color: var(--link); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+    .page { max-width: 54rem; margin: 0 auto; padding: 5rem 1.5rem 4rem; }
+
+    /* Header: the name is the one big moment on the page */
+    header { margin-bottom: 4.5rem; }
+    h1 {
+      font: 500 clamp(2.75rem, 8vw, 5rem)/1 var(--serif);
+      letter-spacing: -0.015em;
+      margin: 0 0 1.25rem;
+    }
+    .role { font-size: 1.1875rem; max-width: 34rem; margin: 0 0 1.25rem; }
+    .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+    header {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    /* Image frames show a soft placeholder until a real image is uploaded */
+    .frame { background: #E3E8ED; overflow: hidden; }
+    .frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .photo { width: 9rem; height: 9rem; border-radius: 50%; }
+
+    /* Sections: headings hang in a left column */
+    section {
+      display: grid;
+      grid-template-columns: 10rem minmax(0, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+    h2 { font: 500 1.25rem/1.4 var(--serif); margin: 0; padding-top: 0.1rem; }
+    .body > *:first-child { margin-top: 0; }
+    .body p { max-width: 38rem; margin: 0 0 1rem; }
+
+    .projects { list-style: none; margin: 0; padding: 0; }
+    .projects li {
+      display: grid;
+      grid-template-columns: 10rem minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 2rem;
+      max-width: 42rem;
+    }
+    .graphic { aspect-ratio: 4 / 3; border-radius: 4px; border: 1px solid var(--line); }
+    .projects h3 { font: 600 1.0625rem/1.4 var(--sans); margin: 0 0 0.25rem; }
+    .projects p { margin: 0; color: var(--muted); }
+
+    /* Dated lists (publications, news): year sits in its own small column */
+    .dated { list-style: none; margin: 0; padding: 0; }
+    .dated li {
+      display: grid;
+      grid-template-columns: 4.25rem minmax(0, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      max-width: 42rem;
+    }
+    .date { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .pub-title { font-weight: 600; display: block; }
+    .authors, .venue { display: block; color: var(--muted); }
+    .venue { font-style: italic; }
+    .me { color: var(--ink); font-weight: 600; }
+    .pub-links { display: flex; gap: 1rem; margin-top: 0.2rem; font-size: 0.9375rem; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 1.25rem;
+      margin-top: 5rem;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    @media (max-width: 640px) {
+      .page { padding-top: 3rem; }
+      header { margin-bottom: 3rem; grid-template-columns: 1fr; gap: 1.5rem; }
+      .photo { width: 6.5rem; height: 6.5rem; }
+      .projects li { grid-template-columns: 1fr; gap: 0.75rem; }
+      .graphic { max-width: 20rem; }
+      section { grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 2.75rem; }
+      .dated li { grid-template-columns: 1fr; gap: 0.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <!-- Profile picture: upload a file named photo.jpg to the repo. A square image works best. -->
+      <div class="frame photo">
+        <img src="Bio_Photo.jpg" alt="Samuel Whitebook" onerror="this.remove()">
+      </div>
+      <div>
+        <h1>Samuel Whitebook</h1>
+        <p class="role"> PhD student in Physics at the California Institute of Technology, working with Prof. Thomas Prince and Prof. Dimitri Mawet on the most dynamically extreme substellar systems.</p>
+        <ul class="links">
+          <li><a href="mailto:sewhitebook@astro.caltech.edu">Email</a></li>
+          <li><a href="Samuel_Whitebook_CV_2026.pdf">CV</a></li>
+          <li><a href="https://scholar.google.com/citations?user=VdimrBkAAAAJ&hl=en">Google Scholar</a></li>
+          <li><a href="https://github.com/Sewhitebook">GitHub</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section id="about">
+        <h2>About</h2>
+        <div class="body">
+          <p>I am a graduate student in physics focusing on data analysis tools for searching astronomy surveys, particularly the Zwicky Transient Facility. 
+             My scientific interests involve the interactions between extremely low mass stars and planets.
+             Currently I am interested in the effects of mass transfer between low mass objects.</p>
+          <p>I received my Bachelors degree in physics from the University of California, Santa Barbara with a minor in astronomy.
+             Outside of school I am a general aviation pilot and hobby metalworker.</p>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+        <div class="body">
+          <ul class="projects">
+            <!-- Project graphics: upload images to the repo and match the src names below.
+                 A 4:3 landscape image works best; anything else is cropped to fit.
+                 Write alt text that describes what the graphic shows. -->
+            <li>
+              <div class="frame graphic">
+                <img src="Binary_Accreting_BrownDwarfs-sm.jpg" alt="Artist's interpretation of the mass transferring brown dwarf binary ZTF J1239+8347" onerror="this.remove()">
+              </div>
+              <div>
+                <h3>Discovery of Substellar Mass Transfer</h3>
+                <p>I led the discovery of ZTF J1239+8347, a record-breaking brown dwarf binary orbiting every 57 minutes and the first confirmed system undergoing stable mass transfer between two substellar objects.
+                   These systems, which I have dubbed "Hourglass Binaries" for their shape and approximately hour length orbital periods, challenge our assumptions about the formation and migration of planetary mass objects.
+                   In addition to the discovery of ZTF J1239+8347 I also published a paper on the theoretical evolution of these exotic systems.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="frame graphic">
+                <img src="zvar_example.png" alt="A high amplitude subdwarf pulsator" onerror="this.remove()">
+              </div>
+              <div>
+                <h3>ZTF Variability Project (ZVAR)</h3>
+                <p>I programmed the GPU-accelerated periodicity analysis of the ZVAR project, which searches for periodic signals in over 3 billion optical light curves.
+                   The ZVAR project utilizes the Fast Periodic Weighting (FPW) algorithm, which I co-developed with Prof. Douglas Finkbeiner and Prof. Thomas Prince to find periodic variable stars of any type.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="frame graphic">
+                <img src="Gliese_229B.png" alt="Description of the project graphic" onerror="this.remove()">
+              </div>
+              <div>
+                <h3>Binary Brown Dwarfs</h3>
+                <p>I independently discovered the binarity of the first T dwarf, Gliese 229B using radial velocity measurements from Keck/NIRSPEC.
+                   This discovery resolved a crucial tension with the computed dynamical mass of the system and is one of the first brown dwarf binaries found to be orbiting a main sequence host.
+                   Recently I have been searching for more brown dwarf binaries, particularly around main sequence hosts as these systems are valuable tests of planet formation.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Selected publications</h2>
+        <div class="body">
+          <!-- Newest first. To add a paper, copy one <li>...</li> block and edit it. -->
+          <ol class="dated" reversed>
+            <li>
+              <span class="date">2026</span>
+              <div>
+                <span class="pub-title">The Physics of Mass Transfer in Substellar and Low-mass Binaries</span>
+                <span class="authors"><span class="me">Samuel Whitebook</span>, Jim Fuller, Kevin Burdge, Thomas R. Marsh, Dimitri Mawet, Thomas Prince</span>
+                <span class="venue">The Astrophysical Journal Letters, 1004, L39</span>
+                <span class="pub-links"><a href="https://doi.org/10.3847/2041-8213/ae771a">Journal</a><a href="https://arxiv.org/abs/2603.17040">arXiv</a></span>
+              </div>
+            </li>
+            <li>
+              <span class="date">2026</span>
+              <div>
+                <span class="pub-title">A Mass Transferring Brown Dwarf Binary on a 57 Minute Orbit</span>
+                <span class="authors"><span class="me">Samuel Whitebook</span>, Antonio C. Rodriguez, Kevin Burdge, Thomas Prince, Dimitri Mawet, et al.</span>
+                <span class="venue">The Astrophysical Journal Letters, 1000, L23</span>
+                <span class="pub-links"><a href="https://doi.org/10.3847/2041-8213/ae486e">Journal</a><a href="https://arxiv.org/abs/2603.17038">arXiv</a></span>
+              </div>
+            </li>
+            <li>
+              <span class="date">2025</span>
+              <div>
+                <span class="pub-title">A Fast Periodicity Detection Algorithm Sensitive to Arbitrary Waveforms</span>
+                <span class="authors">Douglas P. Finkbeiner, Thomas A. Prince, <span class="me">Samuel E. Whitebook</span></span>
+                <span class="venue">Publications of the Astronomical Society of the Pacific, 137, 054504</span>
+                <span class="pub-links"><a href="https://doi.org/10.1088/1538-3873/add20c">Journal</a><a href="https://arxiv.org/abs/2502.00243">arXiv</a></span>
+              </div>
+            </li>
+            <li>
+              <span class="date">2024</span>
+              <div>
+                <span class="pub-title">Discovery of the Binarity of Gliese 229B, and Constraints on the System's Properties</span>
+                <span class="authors"><span class="me">Samuel Whitebook</span>, Timothy D. Brandt, G. Mirek Brandt, Emily C. Martin</span>
+                <span class="venue">The Astrophysical Journal Letters, 974, L30</span>
+                <span class="pub-links"><a href="https://doi.org/10.3847/2041-8213/ad7714">Journal</a><a href="https://arxiv.org/abs/2410.11999">arXiv</a></span>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="presentations">
+        <h2>Presentations</h2>
+        <div class="body">
+          <!-- Newest first. To add a talk, copy one <li>...</li> block and edit it. -->
+          <ul class="dated">
+            <li>
+              <span class="date">Apr 2026</span>
+              <div>
+                <span class="pub-title">The Discovery of Stable Substellar Mass Transfer and ZTF J1239+8347</span>
+                <span class="venue">Department of Astronomy and Astrophysics, University of California, Berkeley</span>
+              </div>
+            </li>
+            <li>
+              <span class="date">Jul 2023</span>
+              <div>
+                <span class="pub-title">Strange Giants: High Mass Brown Dwarfs and Gliese 229B</span>
+                <span class="venue">Astronomy on Tap, Las Cumbres Observatory, Santa Barbara</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>Last updated October 2026</footer>
+  </div>
+</body>
+</html>
